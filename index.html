@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rizal's Ideological Journey</title>
     <style>
+        /* BASE STYLES */
         * {
             margin: 0;
             padding: 0;
@@ -15,7 +16,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 10px; /* Reduced padding for mobile */
             overflow-x: hidden;
         }
 
@@ -24,27 +25,29 @@
             margin: 0 auto;
         }
 
+        /* HEADER */
         header {
             text-align: center;
             color: white;
-            margin-bottom: 40px;
-            padding: 30px;
+            margin-bottom: 20px; /* Reduced margin */
+            padding: 20px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             backdrop-filter: blur(10px);
         }
 
         h1 {
-            font-size: 2.5em;
+            font-size: 2em; /* Adjusted for mobile */
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .subtitle {
-            font-size: 1.2em;
+            font-size: 1em; /* Adjusted for mobile */
             opacity: 0.9;
         }
-
+        
+        /* FOOTER */
         footer {
             text-align: center;
             color: white;
@@ -65,96 +68,73 @@
         .members-list {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px; /* Adjusted gap */
             flex-wrap: wrap;
-            font-size: 1em;
+            font-size: 0.9em; /* Adjusted for mobile */
             opacity: 0.9;
         }
 
-        .member-name {
-            padding: 5px 0;
-        }
-
+        /* LEGEND */
         .legend {
             background: rgba(255, 255, 255, 0.95);
-            padding: 25px;
+            padding: 15px; /* Reduced padding */
             border-radius: 10px;
-            margin-bottom: 30px;
+            margin-bottom: 20px; /* Reduced margin */
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         .legend h3 {
             color: #1e3c72;
-            margin-bottom: 20px;
-            text-align: center;
-            font-size: 1.5em;
-            text-decoration: underline;
+            margin-bottom: 15px; /* Reduced margin */
+            font-size: 1.3em; /* Adjusted for mobile */
         }
 
         .legend-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusted minmax */
+            gap: 10px; /* Adjusted gap */
         }
-
+        
         .legend-item {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 8px;
+            gap: 10px;
+            padding: 5px;
             background: rgba(255, 255, 255, 0.5);
             border-radius: 8px;
         }
-
-        .legend-shape {
-            flex-shrink: 0;
+        
+        .legend-circle, .legend-oval {
+            width: 30px; /* Adjusted size */
+            height: 30px;
         }
-
-        .legend-circle {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-        }
-
+        
         .legend-rectangle {
-            width: 50px;
-            height: 35px;
-            border: 2px solid #000;
-            background: white;
+            width: 40px; /* Adjusted size */
+            height: 25px;
         }
 
         .legend-diamond {
-            width: 35px;
-            height: 35px;
-            transform: rotate(45deg);
-            border: 2px solid #000;
-            background: white;
-        }
-
-        .legend-oval {
-            width: 50px;
-            height: 30px;
-            border-radius: 50%;
-            border: 2px solid #000;
-            background: white;
+            width: 25px; /* Adjusted size */
+            height: 25px;
         }
 
         .legend-text {
-            font-size: 0.9em;
-            font-weight: 600;
-            color: #333;
+            font-size: 0.8em; /* Adjusted for mobile */
         }
 
+
+        /* ROADMAP & NODES - DESKTOP STYLES (default) */
         .roadmap {
             position: relative;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
             padding: 40px;
-            height: 900px;
+            height: 900px; /* Fixed height for desktop visualization */
             box-shadow: 0 8px 16px rgba(0,0,0,0.2);
             overflow: hidden;
         }
-
+        
         svg {
             position: absolute;
             top: 0;
@@ -171,7 +151,7 @@
         }
 
         .node {
-            position: absolute;
+            position: absolute; /* Default: Absolute positioning for desktop layout */
             padding: 8px 10px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.15);
@@ -187,6 +167,28 @@
             text-align: center;
         }
 
+        /* Y-Axis Labels - Desktop Only */
+        .y-axis {
+            position: absolute;
+            left: 10px;
+            top: 40px;
+            bottom: 40px;
+            width: 2px;
+            background: #ddd;
+        }
+
+        .y-label {
+            position: absolute;
+            left: 20px;
+            font-size: 1em;
+            color: #1e3c72;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        /* Node Shapes and Content (Desktop/Mobile Shared) */
         .node.shape-oval {
             border-radius: 50%;
             height: 120px;
@@ -221,11 +223,6 @@
             border-radius: 50%;
             width: 140px;
             height: 140px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
             padding: 12px;
         }
 
@@ -241,18 +238,12 @@
             margin-bottom: 4px;
             color: #1e3c72;
             line-height: 1.1;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            hyphens: auto;
         }
 
         .node-description {
             font-size: 0.65em;
             line-height: 1.2;
             color: #333;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            hyphens: auto;
         }
 
         .node-level {
@@ -266,223 +257,109 @@
             z-index: 10;
         }
 
-        /* FIX: Position label outside the diamond */
         .node.shape-diamond .node-level {
-            position: absolute;
             top: -25px;
             left: 50%;
             transform: translateX(-50%);
         }
 
         /* Color coding */
-        .color-early-life {
-            background: #ffb3ba;
-        }
+        .color-early-life { background: #ffb3ba; }
+        .color-first-literary { background: #d4f4dd; }
+        .color-youth-empowerment { background: #bef5be; }
+        .color-social-reform { background: #a3d5ff; }
+        .color-civic-action { background: #f3c6f3; }
+        .color-legacy { background: #ffc6d9; }
 
-        .color-trauma {
-            background: #ffd4a3;
-        }
 
-        .color-first-literary {
-            background: #d4f4dd;
-        }
+        /* MODAL STYLES (No major changes needed, scrollable content handles responsiveness) */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center; backdrop-filter: blur(5px); }
+        .modal-content { background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%); padding: 0; border-radius: 20px; max-width: 90%; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.4); animation: modalSlideIn 0.3s ease; }
+        .modal-header { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white; padding: 20px; border-radius: 20px 20px 0 0; position: relative; }
+        .modal-header h2 { margin: 0; font-size: 1.5em; }
+        .modal-body { padding: 20px; font-size: 0.9em; }
+        .modal-body h3 { color: #1e3c72; margin-top: 15px; margin-bottom: 10px; font-size: 1.2em; border-bottom: 2px solid #2a5298; padding-bottom: 5px; }
+        .modal-body p { line-height: 1.5; color: #333; margin-bottom: 10px; }
+        .modal-body ul { margin-left: 15px; line-height: 1.5; }
+        .modal-close { position: absolute; top: 10px; right: 15px; font-size: 28px; width: 35px; height: 35px; }
 
-        .color-youth-empowerment {
-            background: #bef5be;
-        }
 
-        .color-injustice {
-            background: #bfe6f5;
-        }
-
-        .color-social-reform {
-            background: #a3d5ff;
-        }
-
-        .color-political {
-            background: #d4c5f9;
-        }
-
-        .color-civic-action {
-            background: #f3c6f3;
-        }
-
-        .color-legacy {
-            background: #ffc6d9;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(5px);
-        }
-
-        .modal-content {
-            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-            padding: 0;
-            border-radius: 20px;
-            max-width: 700px;
-            max-height: 85vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-            animation: modalSlideIn 0.3s ease;
-        }
-
-        @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .modal-header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 20px 20px 0 0;
-            position: relative;
-        }
-
-        .modal-header h2 {
-            margin: 0;
-            font-size: 1.8em;
-            font-weight: 600;
-        }
-
-        .modal-body {
-            padding: 35px;
-        }
-
-        .modal-body h3 {
-            color: #1e3c72;
-            margin-top: 25px;
-            margin-bottom: 15px;
-            font-size: 1.3em;
-            border-bottom: 2px solid #2a5298;
-            padding-bottom: 8px;
-        }
-
-        .modal-body h3:first-child {
-            margin-top: 0;
-        }
-
-        .modal-body p {
-            line-height: 1.8;
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .modal-body ul {
-            margin-left: 20px;
-            line-height: 1.8;
-        }
-
-        .modal-body ul li {
-            margin-bottom: 10px;
-            color: #444;
-        }
-
-        .modal-body ul li strong {
-            color: #1e3c72;
-        }
-
-        .modal-body em {
-            color: #2a5298;
-            font-style: italic;
-            background: rgba(42, 82, 152, 0.1);
-            padding: 2px 6px;
-            border-radius: 4px;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 25px;
-            font-size: 32px;
-            font-weight: bold;
-            cursor: pointer;
-            color: white;
-            background: rgba(255, 255, 255, 0.2);
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-
-        .modal-close:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: rotate(90deg);
-        }
-
-        .modal-content::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .modal-content::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-
-        .modal-content::-webkit-scrollbar-thumb {
-            background: #2a5298;
-            border-radius: 10px;
-        }
-
-        .modal-content::-webkit-scrollbar-thumb:hover {
-            background: #1e3c72;
-        }
-
-        .y-axis {
-            position: absolute;
-            left: 10px;
-            top: 40px;
-            bottom: 40px;
-            width: 2px;
-            background: #ddd;
-        }
-
-        .y-label {
-            position: absolute;
-            left: 20px;
-            font-size: 1em;
-            color: #1e3c72;
-            font-weight: bold;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 5px 10px;
-            border-radius: 5px;
-        }
-
+        /* MEDIA QUERY FOR MOBILE DEVICES */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 1.8em;
-            }
-            
-            .node {
-                min-width: 150px;
-                max-width: 200px;
-                padding: 15px;
-                font-size: 0.85em;
-            }
-            
-            .legend-items {
+            /* Adjust General Elements */
+            h1 { font-size: 1.5em; }
+            .subtitle { font-size: 0.9em; }
+            .legend-grid { grid-template-columns: 1fr; } /* Single column for legend */
+
+            /* Timeline Layout: Change from Absolute to Fluid Vertical */
+            .roadmap {
+                height: auto; /* Remove fixed height */
+                padding: 20px 10px;
+                display: flex; /* Use flexbox for vertical stacking */
                 flex-direction: column;
-                gap: 10px;
+                align-items: center;
+                gap: 50px; /* Space between stacked nodes */
+                overflow: visible; /* Allow content to spill for visual effect */
             }
+
+            .y-label, .y-axis {
+                display: none; /* Remove Y-axis labels on mobile for simplicity */
+            }
+
+            .nodes-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 50px; /* Space between nodes in the vertical stack */
+                width: 100%;
+            }
+
+            .node {
+                position: relative !important; /* OVERRIDE absolute positioning */
+                top: auto !important;
+                left: auto !important;
+                margin: 0;
+                width: 80%; /* Make nodes take up more width */
+                max-width: 300px; /* Cap width for better readability */
+                min-height: 100px;
+                transform: none !important; /* Remove diamond rotation on mobile */
+            }
+            
+            /* Re-style Diamond to be a regular box on mobile */
+            .node.shape-diamond {
+                transform: none; /* Remove rotation */
+                width: 80%;
+                height: auto;
+                min-height: 100px;
+            }
+            
+            .node.shape-diamond .node-content {
+                transform: none; /* Remove reverse rotation on content */
+            }
+            
+            /* Adjust circular/oval nodes to be more box-like but retain shape cues */
+            .node.shape-circle, .node.shape-oval {
+                border-radius: 15px; /* Use rounded rectangle instead of full circle/oval */
+                height: auto;
+                width: 80%;
+                max-width: 300px;
+            }
+            
+            .node-title {
+                font-size: 0.9em;
+            }
+
+            .node-description {
+                font-size: 0.75em;
+            }
+            
+            /* SVG Lines Adjustment */
+            svg {
+                display: none; /* Hide the complex desktop SVG lines on mobile */
+            }
+            
+            /* A simpler vertical connector can be implemented using CSS pseudo-elements if needed, 
+               but hiding the complex curve path is simpler and clearer for the small screen stack. */
         }
     </style>
 </head>
@@ -506,57 +383,57 @@
         </header>
 
         <div class="legend">
-    <h3>LEGEND</h3>
-    <div class="legend-grid">
-        <div class="legend-item">
-            <div class="legend-shape legend-oval"></div>
-            <span class="legend-text">BEGINNING / END (Start of Journey / Martyrdom)</span>
-        </div>
-        <div class="legend-item">
-            <div class="legend-shape legend-rectangle"></div>
-            <span class="legend-text">MAJOR LITERARY WORK (Noli Me Tangere / El Filibusterismo)</span>
-        </div>
-        <div class="legend-item">
-            <div class="legend-shape legend-diamond"></div>
-            <span class="legend-text">CRITICAL IDEOLOGY SHIFT (Evaluation of Violent Revolution)</span>
-        </div>
-        <div class="legend-item">
-            <div class="legend-shape legend-circle" style="background: #ffb3ba;"></div>
-            <span class="legend-text">EARLY LIFE & CORE INFLUENCE (GomBurZa Trauma)</span>
-        </div>
+        <h3>LEGEND</h3>
+        <div class="legend-grid">
+            <div class="legend-item">
+                <div class="legend-shape legend-oval"></div>
+                <span class="legend-text">BEGINNING / END (Start of Journey / Martyrdom)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-shape legend-rectangle"></div>
+                <span class="legend-text">MAJOR LITERARY WORK (Noli Me Tangere / El Filibusterismo)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-shape legend-diamond"></div>
+                <span class="legend-text">CRITICAL IDEOLOGY SHIFT (Evaluation of Violent Revolution)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-shape legend-circle" style="background: #ffb3ba;"></div>
+                <span class="legend-text">EARLY LIFE & CORE INFLUENCE (GomBurZa Trauma)</span>
+            </div>
 
-        <div class="legend-item">
-            <div class="legend-shape legend-circle" style="background: #d4f4dd;"></div>
-            <span class="legend-text">CULTURAL SOVEREIGNTY (Native Language as Identity)</span>
+            <div class="legend-item">
+                <div class="legend-shape legend-circle" style="background: #d4f4dd;"></div>
+                <span class="legend-text">CULTURAL SOVEREIGNTY (Native Language as Identity)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-shape legend-circle" style="background: #bef5be;"></div>
+                <span class="legend-text">INTELLECTUAL MOBILIZATION (Youth Empowerment)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-shape legend-circle" style="background: #a3d5ff;"></div>
+                <span class="legend-text">SOCIAL REFORM ADVOCACY (Women's Education)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-shape legend-circle" style="background: #f3c6f3;"></div>
+                <span class="legend-text">CIVIC/ORGANIZATIONAL ACTION (La Liga Filipina)</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-shape legend-circle" style="background: #ffc6d9;"></div>
+                <span class="legend-text">LEGACY AND NATIONAL AWAKENING (Martyrdom & Impact)</span>
+            </div>
         </div>
-        <div class="legend-item">
-            <div class="legend-shape legend-circle" style="background: #bef5be;"></div>
-            <span class="legend-text">INTELLECTUAL MOBILIZATION (Youth Empowerment)</span>
         </div>
-        <div class="legend-item">
-            <div class="legend-shape legend-circle" style="background: #a3d5ff;"></div>
-            <span class="legend-text">SOCIAL REFORM ADVOCACY (Women's Education)</span>
-        </div>
-        <div class="legend-item">
-            <div class="legend-shape legend-circle" style="background: #f3c6f3;"></div>
-            <span class="legend-text">CIVIC/ORGANIZATIONAL ACTION (La Liga Filipina)</span>
-        </div>
-        <div class="legend-item">
-            <div class="legend-shape legend-circle" style="background: #ffc6d9;"></div>
-            <span class="legend-text">LEGACY AND NATIONAL AWAKENING (Martyrdom & Impact)</span>
-        </div>
-    </div>
-</div>
 
         <div class="roadmap">
-    <svg id="connections"></svg>
-    
-    <div class="y-label" style="top: 100px;">HIGH</div>
-    <div class="y-label" style="top: 450px;">MODERATE</div>
-    <div class="y-label" style="bottom: 100px;">LOW</div>
-    
-    <div class="nodes-container" id="nodesContainer"></div>
-</div>
+        <svg id="connections"></svg>
+        
+        <div class="y-label" style="top: 100px;">HIGH</div>
+        <div class="y-label" style="top: 450px;">MODERATE</div>
+        <div class="y-label" style="bottom: 100px;">LOW</div>
+        
+        <div class="nodes-container" id="nodesContainer"></div>
+        </div>
 
     </div>
 
@@ -571,215 +448,41 @@
 </div>
 
 <script>
+    // --- NODE DATA (UNCHANGED) ---
     const nodes = [
-        {
-            id: 'A',
-            title: 'Childhood & Early Influences',
-            position: { x: 50, y: 700 },
-            shape: 'oval',
-            color: 'color-early-life',
-            description: 'Early patriotic ideals instilled by family',
-            details: `
-                <h3>Key People & Events:</h3>
-                <ul>
-                    <li><strong>Mother Teodora Alonso:</strong> First teacher who taught him love for learning and justice</li>
-                    <li><strong>Execution of GomBurZa (1872):</strong> Witnessed at age 11; planted seeds of questioning Spanish authority</li>
-                    <li><strong>Calamba environment:</strong> Agricultural oppression and friar landholding abuses</li>
-                    <li><strong>Jesuit education at Ateneo:</strong> Academic excellence and exposure to liberal European ideas</li>
-                </ul>
-                <h3>Significance:</h3>
-                <p>These formative years created the foundation of Rizal's social consciousness. The injustices witnessed in his childhood—from his mother's unjust imprisonment to the execution of the Filipino priests—awakened his awareness of systemic colonial oppression. This stage represents the <strong>initial awakening</strong> of patriotic sentiment.</p>
-                <h3>Nationalism Level: LOW-MODERATE</h3>
-                <p>Early awareness forming, but still largely observational and personal rather than actively political.</p>
-            `
-        },
-        {
-            id: 'B',
-            title: 'Sa Aking mga Kababata',
-            position: { x: 220, y: 580 },
-            shape: 'circle',
-            color: 'color-first-literary',
-            description: 'Earliest articulation of Filipino language as identity marker',
-            details: `
-                <h3>Central Message:</h3>
-                <p><em>"Ang hindi magmahal sa kanyang salita / Mahigit sa hayop at malansang isda"</em></p>
-                <p>(One who does not love his own language is worse than a beast and a putrid fish)</p>
-                <h3>Historical Significance:</h3>
-                <ul>
-                    <li>Allegedly written at age 8, making it his earliest nationalist expression</li>
-                    <li>Emphasized native language as core to national identity</li>
-                    <li>Challenged Spanish linguistic and cultural hegemony</li>
-                    <li>Connected language preservation to dignity and freedom</li>
-                </ul>
-                <h3>Impact on Rizal's Evolution:</h3>
-                <p>This poem demonstrates Rizal's precocious understanding that <strong>cultural sovereignty precedes political independence</strong>. Language became a symbol of Filipino identity distinct from Spanish colonialism, laying groundwork for his later advocacy of Filipino self-determination.</p>
-                <h3>Nationalism Level: MODERATE</h3>
-                <p>First articulation of Filipino identity consciousness - a significant intellectual leap upward.</p>
-            `
-        },
-        {
-            id: 'C',
-            title: 'A La Juventud Filipina',
-            position: { x: 390, y: 460 },
-            shape: 'circle',
-            color: 'color-youth-empowerment',
-            description: 'Call for youth intellectual engagement as foundation for progress',
-            details: `
-                <h3>Context:</h3>
-                <p>Written at age 18 while studying at UST; won first prize in a literary contest</p>
-                <h3>Key Themes:</h3>
-                <ul>
-                    <li><strong>"Fair hope of my Fatherland":</strong> Youth as agents of national transformation</li>
-                    <li>Emphasis on education, arts, and sciences as tools of liberation</li>
-                    <li>Appeal to break chains of ignorance imposed by colonial rule</li>
-                    <li>Vision of the Philippines achieving greatness through enlightened youth</li>
-                </ul>
-                <h3>Strategic Significance:</h3>
-                <p>Rizal shifts from mere cultural preservation to <strong>active intellectual mobilization</strong>. He identifies education—not armed revolution—as the pathway to national progress. This represents his reformist ideology: that an educated populace will naturally demand and achieve reforms. The nationalism level rises as he articulates a concrete program for change.</p>
-                <h3>Nationalism Level: MODERATE-HIGH</h3>
-                <p>Active call to action for the youth - moving from awareness to mobilization.</p>
-            `
-        },
-        {
-            id: 'D',
-            title: 'Elias (Noli Me Tangere)',
-            position: { x: 550, y: 280 },
-            shape: 'rectangle',
-            color: 'white',
-            description: 'Radical reformist perspective; revolutionary sacrifice foreshadowed',
-            details: `
-                <h3>Character Analysis:</h3>
-                <p>Elias represents the <strong>radicalized Filipino</strong> who has suffered personally under Spanish injustice (his family destroyed by false accusations and colonial brutality).</p>
-                <h3>Contrasted with Ibarra:</h3>
-                <ul>
-                    <li><strong>Ibarra:</strong> Idealistic reformist seeking change within the system</li>
-                    <li><strong>Elias:</strong> Disillusioned with gradual reform; advocates more radical action</li>
-                </ul>
-                <h3>Elias's Death:</h3>
-                <p>Dies saving Ibarra, his final words: <em>"I die without seeing the dawn brighten over my native land... You, who will see it, welcome it... and do not forget those who have fallen during the night!"</em></p>
-                <h3>Revolutionary Implications:</h3>
-                <p>Through Elias, Rizal explores the <strong>necessity and tragedy of sacrifice</strong> for national liberation. While Rizal himself advocated peaceful reform, Elias represents the inevitability of radical resistance when reforms fail. This internal tension—reform vs. revolution—marks a critical evolution in Rizal's political thought, showing heightened nationalist fervor.</p>
-                <h3>Nationalism Level: HIGH</h3>
-                <p>Bold exposure of colonial injustices through powerful narrative - direct challenge to Spanish rule.</p>
-            `
-        },
-        {
-            id: 'E',
-            title: 'Conclusion of El Filibusterismo',
-            position: { x: 730, y: 480 }, // Shifted from 730 to 700 to re-center
-            shape: 'diamond',
-            color: 'white',
-            description: 'Preconditions for revolution: national suffering and readiness',
-            details: `
-                <h3>Simoun's Failed Revolution:</h3>
-                <p>Simoun (Ibarra reincarnated as a cynic) attempts violent revolution but fails. Mortally wounded, he flees to Padre Florentino.</p>
-                <h3>Padre Florentino's Message:</h3>
-                <p><em>"Why independence, if the slaves of today will be the tyrants of tomorrow?"</em></p>
-                <ul>
-                    <li>Revolution must wait until the people are <strong>morally and intellectually ready</strong></li>
-                    <li>Violence without genuine national consciousness leads to new tyranny</li>
-                    <li>Suffering (himagsikan) must first purify and unify the nation</li>
-                </ul>
-                <h3>Rizal's Mature Position:</h3>
-                <p>This conclusion reveals Rizal's sophisticated understanding: <strong>premature revolution breeds chaos</strong>. True independence requires an enlightened citizenry. However, the very act of depicting revolution—even its failure—signals Rizal's acceptance that armed struggle may eventually be necessary. His nationalism has reached a <strong>critical, urgent intensity</strong>, even as he counsels patience.</p>
-                <h3>Nationalism Level: MODERATE (TURNING POINT - Dip)</h3>
-                <p>Disillusionment and recognition that the people aren't ready - a sobering, reflective moment that tempers revolutionary fervor with wisdom.</p>
-            `
-        },
-        {
-            id: 'F',
-            title: 'Letter to Young Women of Malolos',
-            position: { x: 890, y: 340 },
-            shape: 'circle',
-            color: 'color-social-reform',
-            description: 'Critique of friar power; women empowerment as national strength',
-            details: `
-                <h3>Historical Context:</h3>
-                <p>20 brave women of Malolos petitioned to establish a night school to learn Spanish, defying friar opposition. Rizal wrote to commend their courage.</p>
-                <h3>Key Arguments:</h3>
-                <ul>
-                    <li><strong>Friars as obstacles:</strong> Condemned friar control over education and conscience</li>
-                    <li><strong>Women as nation-builders:</strong> "The Filipino woman must know how to guard her dignity and honor"</li>
-                    <li>Educated mothers raise enlightened children who will transform society</li>
-                    <li>Slavery begins in the home; freedom requires educated, empowered women</li>
-                </ul>
-                <h3>Revolutionary Implications:</h3>
-                <p>Rizal attacks the <strong>cultural and religious foundations of colonial power</strong>. By advocating women's liberation from friar influence, he undermines the entire colonial social structure. This letter demonstrates his understanding that <strong>comprehensive social revolution</strong>—not merely political reform—is necessary. Nationalism here extends into every sphere of Filipino life.</p>
-                <h3>Nationalism Level: MODERATE-HIGH (Recovery)</h3>
-                <p>Renewed hope through grassroots empowerment - finding new pathways for reform through education and women's liberation.</p>
-            `
-        },
-        {
-            id: 'G',
-            title: 'La Liga Filipina',
-            position: { x: 1010, y: 220 },
-            shape: 'circle',
-            color: 'color-civic-action',
-            description: 'Unified reform movement; final attempt at non-violent change',
-            details: `
-                <h3>Structure & Goals:</h3>
-                <ul>
-                    <li><strong>Organization:</strong> Civic association uniting Filipinos for mutual aid and reform</li>
-                    <li><strong>Objectives:</strong>
-                        <ul>
-                            <li>Unite the archipelago into one compact, vigorous body</li>
-                            <li>Mutual protection in every want and necessity</li>
-                            <li>Defense against all violence and injustice</li>
-                            <li>Development of education, agriculture, and commerce</li>
-                        </ul>
-                    </li>
-                </ul>
-                <h3>Historical Outcome:</h3>
-                <p>La Liga was founded on July 3, 1892. <strong>Rizal was arrested and exiled to Dapitan just three days later</strong>, ending the organization's potential before it could act.</p>
-                <h3>Significance:</h3>
-                <p>La Liga represented Rizal's <strong>final, most organized attempt at peaceful reform</strong>. Its immediate suppression proved that Spanish authorities would tolerate no form of Filipino unity or self-determination, even non-violent. The failure of La Liga vindicated those who argued revolution was the only path—leading directly to the formation of the Katipunan by Andres Bonifacio shortly after. Rizal's nationalism has reached its organizational peak, creating structures for collective action.</p>
-                <h3>Nationalism Level: HIGH</h3>
-                <p>Concrete organizational action - converting ideas into unified civic movement for national transformation.</p>
-            `
-        },
-        {
-            id: 'H',
-            title: 'Mi Último Adiós',
-            position: { x: 1110, y: 100 },
-            shape: 'oval',
-            color: 'color-legacy',
-            description: 'Ultimate patriotic sacrifice; martyrdom crystallizes national identity',
-            details: `
-                <h3>Context:</h3>
-                <p>Written the night before his execution on December 30, 1896, hidden in an alcohol lamp given to his sister Trinidad.</p>
-                <h3>Central Themes:</h3>
-                <p><em>"Adiós, Patria adorada, región del sol querida..."</em></p>
-                <ul>
-                    <li><strong>Total self-sacrifice:</strong> "To die is to rest" for the Philippines</li>
-                    <li><strong>Death as seed:</strong> His blood will fertilize future freedom</li>
-                    <li><strong>Vision fulfilled:</strong> Confidence that his death will inspire others to complete the struggle</li>
-                    <li><strong>No bitterness:</strong> Forgives executioners; maintains moral high ground</li>
-                    <li><strong>Farewell to loved ones:</strong> Personal sacrifice for collective liberation</li>
-                </ul>
-                <h3>Ultimate Significance:</h3>
-                <p>Mi Último Adiós transforms Rizal from reformist to <strong>martyr and eternal symbol</strong> of Filipino nationalism. His execution by Spain made him the ultimate proof of colonial tyranny and ignited the revolution he had hoped to avoid. In death, Rizal's nationalism reaches its <strong>absolute peak</strong>—his life became the rallying cry for independence. He embodied the suffering, sacrifice, and hope of the entire Filipino nation.</p>
-                <h3>Legacy:</h3>
-                <p>"The Filipino is worth dying for." Rizal's execution on December 30, 1896, became <strong>the catalyst for the Philippine Revolution</strong>, proving that his pen was mightier than any sword.</p>
-                <h3>Nationalism Level: ULTIMATE/PEAK</h3>
-                <p>Death and martyrdom - the ultimate sacrifice that immortalized Filipino nationalism and sparked the revolution.</p>
-            `
-        }
+        { id: 'A', title: 'Childhood & Early Influences', position: { x: 50, y: 700 }, shape: 'oval', color: 'color-early-life', description: 'Early patriotic ideals instilled by family', details: `<h3>Key People & Events:</h3><ul><li><strong>Mother Teodora Alonso:</strong> First teacher who taught him love for learning and justice</li><li><strong>Execution of GomBurZa (1872):</strong> Witnessed at age 11; planted seeds of questioning Spanish authority</li><li><strong>Calamba environment:</strong> Agricultural oppression and friar landholding abuses</li><li><strong>Jesuit education at Ateneo:</strong> Academic excellence and exposure to liberal European ideas</li></ul><h3>Significance:</h3><p>These formative years created the foundation of Rizal's social consciousness. The injustices witnessed in his childhood—from his mother's unjust imprisonment to the execution of the Filipino priests—awakened his awareness of systemic colonial oppression. This stage represents the <strong>initial awakening</strong> of patriotic sentiment.</p><h3>Nationalism Level: LOW-MODERATE</h3><p>Early awareness forming, but still largely observational and personal rather than actively political.</p>` },
+        { id: 'B', title: 'Sa Aking mga Kababata', position: { x: 220, y: 580 }, shape: 'circle', color: 'color-first-literary', description: 'Earliest articulation of Filipino language as identity marker', details: `<h3>Central Message:</h3><p><em>"Ang hindi magmahal sa kanyang salita / Mahigit sa hayop at malansang isda"</em></p><p>(One who does not love his own language is worse than a beast and a putrid fish)</p><h3>Historical Significance:</h3><ul><li>Allegedly written at age 8, making it his earliest nationalist expression</li><li>Emphasized native language as core to national identity</li><li>Challenged Spanish linguistic and cultural hegemony</li><li>Connected language preservation to dignity and freedom</li></ul><h3>Impact on Rizal's Evolution:</h3><p>This poem demonstrates Rizal's precocious understanding that <strong>cultural sovereignty precedes political independence</strong>. Language became a symbol of Filipino identity distinct from Spanish colonialism, laying groundwork for his later advocacy of Filipino self-determination.</p><h3>Nationalism Level: MODERATE</h3><p>First articulation of Filipino identity consciousness - a significant intellectual leap upward.</p>` },
+        { id: 'C', title: 'A La Juventud Filipina', position: { x: 390, y: 460 }, shape: 'circle', color: 'color-youth-empowerment', description: 'Call for youth intellectual engagement as foundation for progress', details: `<h3>Context:</h3><p>Written at age 18 while studying at UST; won first prize in a literary contest</p><h3>Key Themes:</h3><ul><li><strong>"Fair hope of my Fatherland":</strong> Youth as agents of national transformation</li><li>Emphasis on education, arts, and sciences as tools of liberation</li><li>Appeal to break chains of ignorance imposed by colonial rule</li><li>Vision of the Philippines achieving greatness through enlightened youth</li></ul><h3>Strategic Significance:</h3><p>Rizal shifts from mere cultural preservation to <strong>active intellectual mobilization</strong>. He identifies education—not armed revolution—as the pathway to national progress. This represents his reformist ideology: that an educated populace will naturally demand and achieve reforms. The nationalism level rises as he articulates a concrete program for change.</p><h3>Nationalism Level: MODERATE-HIGH</h3><p>Active call to action for the youth - moving from awareness to mobilization.</p>` },
+        { id: 'D', title: 'Elias (Noli Me Tangere)', position: { x: 550, y: 280 }, shape: 'rectangle', color: 'white', description: 'Radical reformist perspective; revolutionary sacrifice foreshadowed', details: `<h3>Character Analysis:</h3><p>Elias represents the <strong>radicalized Filipino</strong> who has suffered personally under Spanish injustice (his family destroyed by false accusations and colonial brutality).</p><h3>Contrasted with Ibarra:</h3><ul><li><strong>Ibarra:</strong> Idealistic reformist seeking change within the system</li><li><strong>Elias:</strong> Disillusioned with gradual reform; advocates more radical action</li></ul><h3>Elias's Death:</h3><p>Dies saving Ibarra, his final words: <em>"I die without seeing the dawn brighten over my native land... You, who will see it, welcome it... and do not forget those who have fallen during the night!"</em></p><h3>Revolutionary Implications:</h3><p>Through Elias, Rizal explores the <strong>necessity and tragedy of sacrifice</strong> for national liberation. While Rizal himself advocated peaceful reform, Elias represents the inevitability of radical resistance when reforms fail. This internal tension—reform vs. revolution—marks a critical evolution in Rizal's political thought, showing heightened nationalist fervor.</p><h3>Nationalism Level: HIGH</h3><p>Bold exposure of colonial injustices through powerful narrative - direct challenge to Spanish rule.</p>` },
+        { id: 'E', title: 'Conclusion of El Filibusterismo', position: { x: 730, y: 480 }, shape: 'diamond', color: 'white', description: 'Preconditions for revolution: national suffering and readiness', details: `<h3>Simoun's Failed Revolution:</h3><p>Simoun (Ibarra reincarnated as a cynic) attempts violent revolution but fails. Mortally wounded, he flees to Padre Florentino.</p><h3>Padre Florentino's Message:</h3><p><em>"Why independence, if the slaves of today will be the tyrants of tomorrow?"</em></p><ul><li>Revolution must wait until the people are <strong>morally and intellectually ready</strong></li><li>Violence without genuine national consciousness leads to new tyranny</li><li>Suffering (himagsikan) must first purify and unify the nation</li></ul><h3>Rizal's Mature Position:</h3><p>This conclusion reveals Rizal's sophisticated understanding: <strong>premature revolution breeds chaos</strong>. True independence requires an enlightened citizenry. However, the very act of depicting revolution—even its failure—signals Rizal's acceptance that armed struggle may eventually be necessary. His nationalism has reached a <strong>critical, urgent intensity</strong>, even as he counsels patience.</p><h3>Nationalism Level: MODERATE (TURNING POINT - Dip)</h3><p>Disillusionment and recognition that the people aren't ready - a sobering, reflective moment that tempers revolutionary fervor with wisdom.</p>` },
+        { id: 'F', title: 'Letter to Young Women of Malolos', position: { x: 890, y: 340 }, shape: 'circle', color: 'color-social-reform', description: 'Critique of friar power; women empowerment as national strength', details: `<h3>Historical Context:</h3><p>20 brave women of Malolos petitioned to establish a night school to learn Spanish, defying friar opposition. Rizal wrote to commend their courage.</p><h3>Key Arguments:</h3><ul><li><strong>Friars as obstacles:</strong> Condemned friar control over education and conscience</li><li><strong>Women as nation-builders:</strong> "The Filipino woman must know how to guard her dignity and honor"</li><li>Educated mothers raise enlightened children who will transform society</li><li>Slavery begins in the home; freedom requires educated, empowered women</li></ul><h3>Revolutionary Implications:</h3><p>Rizal attacks the <strong>cultural and religious foundations of colonial power</strong>. By advocating women's liberation from friar influence, he undermines the entire colonial social structure. This letter demonstrates his understanding that <strong>comprehensive social revolution</strong>—not merely political reform—is necessary. Nationalism here extends into every sphere of Filipino life.</p><h3>Nationalism Level: MODERATE-HIGH (Recovery)</h3><p>Renewed hope through grassroots empowerment - finding new pathways for reform through education and women's liberation.</p>` },
+        { id: 'G', title: 'La Liga Filipina', position: { x: 1010, y: 220 }, shape: 'circle', color: 'color-civic-action', description: 'Unified reform movement; final attempt at non-violent change', details: `<h3>Structure & Goals:</h3><ul><li><strong>Organization:</strong> Civic association uniting Filipinos for mutual aid and reform</li><li><strong>Objectives:</strong><ul><li>Unite the archipelago into one compact, vigorous body</li><li>Mutual protection in every want and necessity</li><li>Defense against all violence and injustice</li><li>Development of education, agriculture, and commerce</li></ul></li></ul><h3>Historical Outcome:</h3><p>La Liga was founded on July 3, 1892. <strong>Rizal was arrested and exiled to Dapitan just three days later</strong>, ending the organization's potential before it could act.</p><h3>Significance:</h3><p>La Liga represented Rizal's <strong>final, most organized attempt at peaceful reform</strong>. Its immediate suppression proved that Spanish authorities would tolerate no form of Filipino unity or self-determination, even non-violent. The failure of La Liga vindicated those who argued revolution was the only path—leading directly to the formation of the Katipunan by Andres Bonifacio shortly after. Rizal's nationalism has reached its organizational peak, creating structures for collective action.</p><h3>Nationalism Level: HIGH</h3><p>Concrete organizational action - converting ideas into unified civic movement for national transformation.</p>` },
+        { id: 'H', title: 'Mi Último Adiós', position: { x: 1110, y: 100 }, shape: 'oval', color: 'color-legacy', description: 'Ultimate patriotic sacrifice; martyrdom crystallizes national identity', details: `<h3>Context:</h3><p>Written the night before his execution on December 30, 1896, hidden in an alcohol lamp given to his sister Trinidad.</p><h3>Central Themes:</h3><p><em>"Adiós, Patria adorada, región del sol querida..."</em></p><ul><li><strong>Total self-sacrifice:</strong> "To die is to rest" for the Philippines</li><li><strong>Death as seed:</strong> His blood will fertilize future freedom</li><li><strong>Vision fulfilled:</strong> Confidence that his death will inspire others to complete the struggle</li><li><strong>No bitterness:</strong> Forgives executioners; maintains moral high ground</li><li><strong>Farewell to loved ones:</strong> Personal sacrifice for collective liberation</li></ul><h3>Ultimate Significance:</h3><p>Mi Último Adiós transforms Rizal from reformist to <strong>martyr and eternal symbol</strong> of Filipino nationalism. His execution by Spain made him the ultimate proof of colonial tyranny and ignited the revolution he had hoped to avoid. In death, Rizal's nationalism reaches its <strong>absolute peak</strong>—his life became the rallying cry for independence. He embodied the suffering, sacrifice, and hope of the entire Filipino nation.</p><h3>Legacy:</h3><p>"The Filipino is worth dying for." Rizal's execution on December 30, 1896, became <strong>the catalyst for the Philippine Revolution</strong>, proving that his pen was mightier than any sword.</p><h3>Nationalism Level: ULTIMATE/PEAK</h3><p>Death and martyrdom - the ultimate sacrifice that immortalized Filipino nationalism and sparked the revolution.</p>` }
     ];
 
     const container = document.getElementById('nodesContainer');
     const svg = document.getElementById('connections');
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
     // Create nodes
     nodes.forEach(node => {
         const nodeEl = document.createElement('div');
         nodeEl.className = `node shape-${node.shape} ${node.color}`;
-        nodeEl.style.left = node.position.x + 'px';
-        nodeEl.style.top = node.position.y + 'px';
         
-        // For the El Filibusterismo node (E), ensure better title wrapping if needed
+        // --- RESPONSIVENESS ADJUSTMENT IN JS ---
+        // Only apply absolute positioning for non-mobile views
+        if (!isMobile) {
+            nodeEl.style.left = node.position.x + 'px';
+            nodeEl.style.top = node.position.y + 'px';
+        }
+        // If it's a diamond on mobile, remove the rotation property from inline style so the CSS media query can take over
+        if (isMobile && node.shape === 'diamond') {
+             nodeEl.style.transform = 'none';
+        }
+        
         let nodeTitle = node.title;
         if (node.id === 'E') {
-            nodeTitle = 'Conclusion of El Filibusterismo'; // Use full title for clarity
+            nodeTitle = 'Conclusion of El Filibusterismo';
         }
         
         const content = `
@@ -788,7 +491,7 @@
             <div class="node-description">${node.description}</div>
         `;
         
-        if (node.shape === 'diamond') {
+        if (node.shape === 'diamond' && !isMobile) {
             nodeEl.innerHTML = `<div class="node-content">${content}</div>`;
         } else {
             nodeEl.innerHTML = content;
@@ -798,59 +501,40 @@
         container.appendChild(nodeEl);
     });
 
-    // Draw connections
+    // Draw connections - Only run for Desktop/Tablet (non-mobile) view
     function drawConnections() {
+        if (isMobile) {
+            svg.style.display = 'none'; // Ensure SVG is hidden on mobile
+            return;
+        }
+        
         const svgNS = "http://www.w3.org/2000/svg";
         svg.innerHTML = '';
-        
-        // Removed arrowhead marker definition
         
         for (let i = 0; i < nodes.length - 1; i++) {
             const start = nodes[i];
             const end = nodes[i + 1];
             
-            // Calculate center points (using original logic for start/end points)
+            // Calculate center points (logic for desktop layout)
             let startX, startY, endX, endY;
             
-            // Start Node Center Calculation
-            if (start.shape === 'circle') {
-                startX = start.position.x + 70;
-                startY = start.position.y + 70;
-            } else if (start.shape === 'oval') {
-                startX = start.position.x + 80;
-                startY = start.position.y + 60;
-            } else if (start.shape === 'diamond') {
-                startX = start.position.x + 75;
-                startY = start.position.y + 75;
-            } else { // Rectangle (Default for D)
-                startX = start.position.x + 75;
-                startY = start.position.y + 50;
-            }
+            if (start.shape === 'circle') { startX = start.position.x + 70; startY = start.position.y + 70; } 
+            else if (start.shape === 'oval') { startX = start.position.x + 80; startY = start.position.y + 60; } 
+            else if (start.shape === 'diamond') { startX = start.position.x + 75; startY = start.position.y + 75; } 
+            else { startX = start.position.x + 75; startY = start.position.y + 50; } // Rectangle
             
-            // End Node Center Calculation
-            if (end.shape === 'circle') {
-                endX = end.position.x + 70;
-                endY = end.position.y + 70;
-            } else if (end.shape === 'oval') {
-                endX = end.position.x + 80;
-                endY = end.position.y + 60;
-            } else if (end.shape === 'diamond') {
-                endX = end.position.x + 75;
-                endY = end.position.y + 75;
-            } else { // Rectangle
-                endX = end.position.x + 75;
-                endY = end.position.y + 50;
-            }
+            if (end.shape === 'circle') { endX = end.position.x + 70; endY = end.position.y + 70; } 
+            else if (end.shape === 'oval') { endX = end.position.x + 80; endY = end.position.y + 60; } 
+            else if (end.shape === 'diamond') { endX = end.position.x + 75; endY = end.position.y + 75; } 
+            else { endX = end.position.x + 75; endY = end.position.y + 50; } // Rectangle
             
-            // --- NEW PATH CALCULATION FOR SMOOTHNESS ---
             const line = document.createElementNS(svgNS, "path");
             
-            // Using a cubic Bézier curve for better control over the "dip"
+            // Cubic Bézier curve for desktop flow
             const controlX1 = (startX + endX) / 2;
-            const controlY1 = startY; 
-            
+            const controlY1 = startY;
             const controlX2 = (startX + endX) / 2;
-            const controlY2 = endY; 
+            const controlY2 = endY;
             
             const d = `M ${startX} ${startY} C ${controlX1} ${controlY1}, ${controlX2} ${controlY2}, ${endX} ${endY}`;
             
@@ -859,7 +543,6 @@
             line.setAttribute("stroke-width", "3");
             line.setAttribute("fill", "none");
             line.setAttribute("opacity", "0.8");
-            // Removed marker-end attribute
             
             svg.appendChild(line);
         }
@@ -867,6 +550,7 @@
 
     drawConnections();
 
+    // --- MODAL FUNCTIONS (UNCHANGED) ---
     function openModal(node) {
         const modal = document.getElementById('modal');
         const headerContent = document.getElementById('modalHeader');
